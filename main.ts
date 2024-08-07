@@ -1,6 +1,8 @@
 namespace SpriteKind {
     export const NPC = SpriteKind.create()
     export const MrSaturnSpawn = SpriteKind.create()
+    export const SaturnIII = SpriteKind.create()
+    export const SATURN4 = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy = -51
@@ -17,6 +19,10 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 	
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.SaturnIII, function (sprite2, otherSprite) {
+    story.spriteSayText(sprite3, "WELCOME TO SATURN VALLEY. WE ALL MR SATURN. DEVELOPER TOO LAZY TO MAKE OTHER SPECIES TALK.")
+    pause(6000)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.x += 5
@@ -55,11 +61,21 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     }
     mySprite.vy = 0
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.SATURN4, function (sprite2, otherSprite) {
+    story.spriteSayText(_4, "WATCHING SKY. NO CLOUD TODAY. YELLOW SUN.")
+    pause(6000)
+})
+let sprite3: Sprite = null
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
+let _4: Sprite = null
 mySprite = sprites.create(assets.image`nestenidle`, SpriteKind.Player)
 mySprite2 = sprites.create(assets.image`myImage0`, SpriteKind.MrSaturnSpawn)
 mySprite2.setPosition(100, 100)
+sprite3 = sprites.create(assets.image`myImage0`, SpriteKind.SaturnIII)
+sprite3.setPosition(550, 100)
+_4 = sprites.create(assets.image`myImage0`, SpriteKind.SATURN4)
+_4.setPosition(535, 150)
 scene.cameraFollowSprite(mySprite)
 tiles.setCurrentTilemap(tilemap`level0`)
 tileUtil.setWalls(assets.tile`myTile15`, true)
